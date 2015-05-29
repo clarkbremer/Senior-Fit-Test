@@ -9,11 +9,12 @@ namespace :db do
     Resident.destroy_all
     Assessor.destroy_all
     Admin.destroy_all
+    User.destroy_all
 
     community = Community.create(name: "The Village", city: "Roseville")
-    resident = Resident.create(community: community, user_attributes: {email: "resident@name.com", password: 'password', password_confirmation: 'password'})
-    assessor = Assessor.create(user_attributes: {email: "assessor@name.com", password: 'password', password_confirmation: 'password'})
-    admin = Admin.create(user_attributes: {email: "admin@name.com", password: 'password', password_confirmation: 'password'})
+    resident = Resident.create(community: community, user_attributes: {name: "Joe Resident", email: "resident@name.com", password: 'password', password_confirmation: 'password'})
+    assessor = Assessor.create(user_attributes: {name: "Annie Assessor", email: "assessor@name.com", password: 'password', password_confirmation: 'password'})
+    admin = Admin.create(user_attributes: {name: "Andy Admin", email: "admin@name.com", password: 'password', password_confirmation: 'password'})
 
   end
 end
