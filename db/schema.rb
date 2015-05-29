@@ -11,10 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527000135) do
+ActiveRecord::Schema.define(version: 20150529001425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+  end
+
+  create_table "assessments", force: :cascade do |t|
+    t.integer  "resident_id"
+    t.datetime "date"
+    t.integer  "chair_stand"
+    t.integer  "arm_curl"
+    t.integer  "two_minute_step"
+    t.decimal  "sit_and_reach"
+    t.decimal  "back_scratch"
+    t.decimal  "eight_foot_up_and_go"
+  end
+
+  add_index "assessments", ["resident_id"], name: "index_assessments_on_resident_id", using: :btree
+
+  create_table "assessors", force: :cascade do |t|
+  end
+
+  create_table "assessors_communities", id: false, force: :cascade do |t|
+    t.integer "community_id"
+    t.integer "assessor_id"
+  end
+
+  add_index "assessors_communities", ["assessor_id"], name: "index_assessors_communities_on_assessor_id", using: :btree
+  add_index "assessors_communities", ["community_id"], name: "index_assessors_communities_on_community_id", using: :btree
+
+  create_table "communities", force: :cascade do |t|
+    t.string "name"
+    t.string "city"
+  end
+
+  create_table "residents", force: :cascade do |t|
+    t.integer "community_id"
+  end
+
+  add_index "residents", ["community_id"], name: "index_residents_on_community_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -29,11 +67,13 @@ ActiveRecord::Schema.define(version: 20150527000135) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "role"
     t.string   "name"
+    t.integer  "person_id"
+    t.string   "person_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["person_type", "person_id"], name: "index_users_on_person_type_and_person_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

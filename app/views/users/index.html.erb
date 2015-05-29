@@ -1,10 +1,10 @@
 <% if user_signed_in? %>
   <% case current_user.role %>
-  <% when 'resident' %>
+  <% when "resident" %>
     <h3>Welcome, Resident</h3>
-  <% when 'assessor' %>
+  <% when "assessor" %>
     <h3>Welcome, Assessor</h3>
-  <% when 'admin' %>
+  <% when "admin" %>
     <h3>Welcome, Administrator</h3>
   <% end %>
 <% else %>
