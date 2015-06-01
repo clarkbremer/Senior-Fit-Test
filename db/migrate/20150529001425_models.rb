@@ -3,6 +3,7 @@ class Models < ActiveRecord::Migration
     create_table(:communities) do |t|
       t.string :name
       t.string :city
+      t.string :state
     end
 
     create_table(:assessments) do |t|
@@ -33,6 +34,6 @@ class Models < ActiveRecord::Migration
 
     add_reference :users, :person, polymorphic: true, index: true
 
-    remove_column :users, :role
+    remove_column :users, :role, :integer
   end
 end

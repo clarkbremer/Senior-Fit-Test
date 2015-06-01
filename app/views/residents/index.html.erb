@@ -1,0 +1,4 @@
+<p>Choose a resident to see their assessments:</p>
+<% @residents.each do |resident| %>
+  <li><%= link_to resident.name, resident %></li>
+<% end %>

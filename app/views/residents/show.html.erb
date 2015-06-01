@@ -1,0 +1,8 @@
+<H2>Resident:</H2>
+<p>name: <%= @resident.name %></p>
+<p>email: <%= @resident.email %></p>
+
+<H2>Assessments</H2>
+<% @resident.assessments.each do |assessment| %>
+<% #render assessment %>
+<% end %>

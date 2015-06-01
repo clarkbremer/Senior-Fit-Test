@@ -1,0 +1,17 @@
+<%= form_for(community) do |f| %>
+  <p>
+    <b>Community Name</b><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <b>City</b><br>
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <b>State</b><br>
+    <%= f.text_field :sate %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

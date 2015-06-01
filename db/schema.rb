@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20150529001425) do
   create_table "communities", force: :cascade do |t|
     t.string "name"
     t.string "city"
+    t.string "state"
   end
 
   create_table "residents", force: :cascade do |t|

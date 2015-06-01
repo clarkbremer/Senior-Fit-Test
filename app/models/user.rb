@@ -18,4 +18,15 @@ class User < ActiveRecord::Base
     self.person_type == "Resident" || self.person_type == "Assessor" || self.person_type == "Admin"
   end
 
+  def assessor_for_resident?(resident)
+    return false unless assessor?
+    assessor = self.person
+    assessor.communities.include? resident.community
+  end
+
+  def assessor_for_community?(community)
+    return false unless assessor?
+    assessor = self.person
+    assessor.communities.include? community
+  end
 end
