@@ -20,6 +20,14 @@ class ResidentPolicy
     @current_user.assessor?
   end
 
+  def edit?
+    update?
+  end
+
+  def create?
+    update?
+  end
+
   def destroy?
     @current_user.admin?
   end

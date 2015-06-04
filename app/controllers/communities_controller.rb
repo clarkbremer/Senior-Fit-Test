@@ -8,6 +8,7 @@ class CommunitiesController < ApplicationController
   def show
     @community = Community.find(params[:id])
     authorize @community
+    @residents = @community.residents
   end
 
   def edit
@@ -21,7 +22,7 @@ class CommunitiesController < ApplicationController
     if @community.update_attributes(secure_params)
       redirect_to communities_path, :notice => "Community updated."
     else
-      redirect_to communities_path, :alert => "Unable to update community."
+      render :edit
     end
   end
 
@@ -34,7 +35,7 @@ class CommunitiesController < ApplicationController
     if @community.save
       redirect_to communities_path, notice: "Community Created."
     else
-      redirect_to edit_path(@community), alert: "Unable to create community."
+      render :new
     end
   end
 
@@ -48,7 +49,7 @@ class CommunitiesController < ApplicationController
   private
 
   def secure_params
-    params.require(:community).permit(:name, :city)
+    params.require(:community).permit(:name, :city, :state)
   end
 
 end

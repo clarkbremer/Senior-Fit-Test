@@ -1,4 +1,6 @@
 class Community < ActiveRecord::Base
   has_and_belongs_to_many :assessors
-  has_many :residents
+  has_many :residents, dependent: :destroy
+
+  validates_presence_of :name, :city, :state
 end

@@ -1,0 +1,13 @@
+<%= render partial: "errors", errors: @resident.errors  %>
+
+<%= form_for [resident.community, resident] do |f| %>
+  <%= f.fields_for :user, resident.user do |u| %>
+    <p>
+      <b>Resident Name</b><br>
+      <%= u.text_field :name %>
+    </p>
+  <% end %>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

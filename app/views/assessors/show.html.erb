@@ -1,0 +1,8 @@
+<H1>Assessor</H1>
+<H2><%= @assessor.name %></H2>
+<h3>is an assessor for the following communities:</h3>
+<% @assessor.communities.each do |community| %>
+  <li>
+    <%= link_to community.name, community_path(community) %>
+  </li>
+<% end %>

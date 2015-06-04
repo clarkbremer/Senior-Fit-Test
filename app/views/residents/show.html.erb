@@ -1,8 +1,11 @@
 <H2>Resident:</H2>
 <p>name: <%= @resident.name %></p>
 <p>email: <%= @resident.email %></p>
+<p>community: <%= link_to @resident.community.name, community_path(@resident.community) %></p>
+<%= link_to "Edit Resident Details", edit_community_resident_path(@resident.community, @resident) %>
 
-<H2>Assessments</H2>
+<H2>Assessments:</H2>
+<%= link_to "Add a new Assessment", new_assessment_path %>
 <% @resident.assessments.each do |assessment| %>
-<% #render assessment %>
+  <% link_to assessment.date, assessment %>
 <% end %>

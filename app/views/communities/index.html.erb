@@ -1,7 +1,7 @@
 <H2>Communities</H2>
 <% @communities.each do |community| %>
 <li>
-  Name: <%= community.name %>  City: <%= community.city %>  State: <%= community.state %>
+  Name: <%= link_to community.name, community_path(community) %>  City: <%= community.city %>  State: <%= community.state %>
   <%= link_to "Edit", edit_community_path(community) %>
   <% if current_user.admin? %>
     <%= link_to "Delete", community_path(community), method: :delete, data: { confirm: "Are you sure?" } %>

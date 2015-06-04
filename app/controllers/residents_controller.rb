@@ -11,14 +11,28 @@ class ResidentsController < ApplicationController
     authorize @resident
   end
 
+  def edit
+    @resident = Resident.find(params[:id])
+    authorize @resident
+  end
+
   def update
     @resident = Resident.find(params[:id])
     authorize @resident
     if @resident.update_attributes(secure_params)
-      redirect_to residents_path, :notice => "Resident updated."
+      redirect_to community_resident_path(@resident.community, @resident), :notice => "Resident updated."
     else
-      redirect_to residents_path, :alert => "Unable to update resident."
+      render :edit
     end
+  end
+
+  def new
+    @resident = Resident.new
+  end
+
+  def create
+    @community = Community.find(params[:community_id])
+    @resident = @community.create_resident(secure_params)
   end
 
   def destroy
@@ -31,7 +45,7 @@ class ResidentsController < ApplicationController
   private
 
   def secure_params
-    params.require(:resident).permit(:name)
+    params.require(:resident).permit(user_attributes: [:id, :name])
   end
 
 end

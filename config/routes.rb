@@ -2,12 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users
-  resources :residents
-  resources :communities
+  resources :communities do
+    resources :residents
+  end
   resources :assessors
   resources :assessments
 
-  root 'landing_page#landing_page'
+  root 'home#home_redirect'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
