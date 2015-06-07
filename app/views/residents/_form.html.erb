@@ -1,10 +1,18 @@
-<%= render partial: "errors", errors: @resident.errors  %>
+<%= render partial: "errors" %>
 
-<%= form_for [resident.community, resident] do |f| %>
-  <%= f.fields_for :user, resident.user do |u| %>
+<%= form_for [@community, resident] do |f| %>
+  <p>
+    <b>Resident Name</b><br>
+    <%= f.text_field :name %>
+  </p>
+  <%= f.fields_for :user do |u| %>
     <p>
-      <b>Resident Name</b><br>
-      <%= u.text_field :name %>
+      <b>Resident Email</b><br>
+      <%= u.text_field :email %>
+    </p>
+    <p>
+      <b>Resident Password</b><br>
+      <%= u.text_field :password %>
     </p>
   <% end %>
   <p>

@@ -4,6 +4,6 @@
 <%= link_to "Add a Resdient", new_community_resident_path(@community) %>
 <% @residents.each do |resident| %>
   <li>
-    <%= link_to resident.name, community_resident_path(@community, resident) %>
+    <%= link_to resident.name, resident_path(resident) %>
   </li>
 <% end %>

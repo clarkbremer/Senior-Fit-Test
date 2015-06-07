@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529001425) do
+ActiveRecord::Schema.define(version: 20150607003811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "assessments", force: :cascade do |t|
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150529001425) do
   add_index "assessments", ["resident_id"], name: "index_assessments_on_resident_id", using: :btree
 
   create_table "assessors", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "assessors_communities", id: false, force: :cascade do |t|
@@ -51,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150529001425) do
 
   create_table "residents", force: :cascade do |t|
     t.integer "community_id"
+    t.string  "name"
   end
 
   add_index "residents", ["community_id"], name: "index_residents_on_community_id", using: :btree
@@ -68,7 +71,6 @@ ActiveRecord::Schema.define(version: 20150529001425) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "name"
     t.integer  "person_id"
     t.string   "person_type"
   end
