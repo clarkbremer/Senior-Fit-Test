@@ -7,7 +7,7 @@
 <%= link_to "Edit Resident Details", edit_resident_path(@resident) %>
 
 <H2>Assessments:</H2>
-<%= link_to "Add a new Assessment", new_resident_assessment_path(@resident) %>
+<p><%= link_to "Add a new Assessment", new_resident_assessment_path(@resident) %></p>
 <% @resident.assessments.each do |assessment| %>
-  <% link_to assessment.date, assessment %>
+  <%= link_to assessment.date, assessment %>
 <% end %>

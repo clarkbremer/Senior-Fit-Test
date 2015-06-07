@@ -24,6 +24,7 @@ class ResidentsController < ApplicationController
     authorize @resident
     if params[:resident][:user_attributes][:email].blank?
       params[:resident].delete(:user_attributes)
+      @resident.user.destroy if @resident.user
     end
     if @resident.update_attributes(secure_params)
       redirect_to resident_path(@resident), :notice => "Resident updated."
@@ -45,7 +46,7 @@ class ResidentsController < ApplicationController
     end
     @resident = @community.residents.build(secure_params)
     if @resident.save
-      redirect_to community_path(@resident.community), :notice => "Resident Created."
+      redirect_to resident_path(@resident), :notice => "Resident Created."
     else
       render :edit
     end

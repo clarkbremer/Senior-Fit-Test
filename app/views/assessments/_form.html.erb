@@ -1,0 +1,35 @@
+<%= render partial: "errors" %>
+
+<%= form_for [@resident, assessment] do |f| %>
+  <p>
+    <b>Assessment Date</b><br>
+    <%= f.date_field :date %>
+  </p>
+  <p>
+    <b>chair_stand</b><br>
+    <%= f.number_field :chair_stand %>
+  </p>
+  <p>
+    <b>arm_curl</b><br>
+    <%= f.number_field :arm_curl %>
+  </p>
+  <p>
+    <b>two_minute_step</b><br>
+    <%= f.number_field :two_minute_step %>
+  </p>
+  <p>
+    <b>sit_and_reach</b><br>
+    <%= f.text_field :sit_and_reach, :value => (number_with_precision(f.object.sit_and_reach, :precision => 1) || 0) %>
+  </p>
+  <p>
+    <b>back_scratch</b><br>
+    <%= f.text_field :back_scratch, :value => (number_with_precision(f.object.back_scratch, :precision => 1) || 0) %>
+  </p>
+  <p>
+    <b>eight_foot_up_and_go</b><br>
+    <%= f.text_field :eight_foot_up_and_go, :value => (number_with_precision(f.object.eight_foot_up_and_go, :precision => 1) || 0) %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

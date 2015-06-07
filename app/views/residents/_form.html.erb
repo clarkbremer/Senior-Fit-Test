@@ -8,11 +8,11 @@
   <%= f.fields_for :user do |u| %>
     <p>
       <b>Resident Email</b><br>
-      <%= u.text_field :email %>
+      <%= u.email_field :email %>
     </p>
     <p>
       <b>Resident Password</b><br>
-      <%= u.text_field :password %>
+      <%= u.password_field :password %>
     </p>
   <% end %>
   <p>
