@@ -8,7 +8,7 @@ class Models < ActiveRecord::Migration
 
     create_table(:assessments) do |t|
       t.belongs_to :resident, index: true
-      t.datetime :date
+      t.date :date
       t.integer :chair_stand
       t.integer :arm_curl
       t.integer :two_minute_step

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607003811) do
+ActiveRecord::Schema.define(version: 20150607141343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,14 @@ ActiveRecord::Schema.define(version: 20150607003811) do
   end
 
   create_table "assessments", force: :cascade do |t|
-    t.integer  "resident_id"
-    t.datetime "date"
-    t.integer  "chair_stand"
-    t.integer  "arm_curl"
-    t.integer  "two_minute_step"
-    t.decimal  "sit_and_reach"
-    t.decimal  "back_scratch"
-    t.decimal  "eight_foot_up_and_go"
+    t.integer "resident_id"
+    t.date    "date"
+    t.integer "chair_stand"
+    t.integer "arm_curl"
+    t.integer "two_minute_step"
+    t.decimal "sit_and_reach"
+    t.decimal "back_scratch"
+    t.decimal "eight_foot_up_and_go"
   end
 
   add_index "assessments", ["resident_id"], name: "index_assessments_on_resident_id", using: :btree
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150607003811) do
   create_table "residents", force: :cascade do |t|
     t.integer "community_id"
     t.string  "name"
+    t.date    "birthdate"
   end
 
   add_index "residents", ["community_id"], name: "index_residents_on_community_id", using: :btree

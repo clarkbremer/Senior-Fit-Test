@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :communities do
       resources :residents do
         resources :assessments
+        resource :login
       end
     end
   end

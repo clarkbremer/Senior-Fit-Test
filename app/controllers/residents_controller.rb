@@ -62,7 +62,7 @@ class ResidentsController < ApplicationController
   private
 
   def secure_params
-    params.require(:resident).permit(:name, user_attributes: [:id, :email, :password])
+    params.require(:resident).permit(:name, :birthdate, user_attributes: [:id, :email, :password])
   end
 
 end

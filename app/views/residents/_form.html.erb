@@ -1,9 +1,13 @@
-<%= render partial: "errors" %>
+<%= render partial: "shared/errors", locals: {object: @resident} %>
 
 <%= form_for [@community, resident] do |f| %>
   <p>
     <b>Resident Name</b><br>
     <%= f.text_field :name %>
+  </p>
+  <p>
+    <b>Birthdate</b><br>
+    <%= f.date_field :birthdate %>
   </p>
   <%= f.fields_for :user do |u| %>
     <p>
