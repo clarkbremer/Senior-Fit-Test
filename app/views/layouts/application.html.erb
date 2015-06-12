@@ -7,17 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<ul class="hmenu">
-  <%= render 'devise/menu/login_items' %>
-</ul>
-<hr>
-<% unless flash.empty? %>
-  <% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: name %>
-  <% end -%>
+<div class="container">
+  <ul class="hmenu">
+    <%= render 'devise/menu/login_items' %>
+  </ul>
   <hr>
-<% end %>
-<%= yield %>
-
+  <H1>Senior Fit Test</H1>
+  <hr>
+  <% unless flash.empty? %>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+    <hr>
+  <% end %>
+  <%= yield %>
+</div>
 </body>
 </html>
