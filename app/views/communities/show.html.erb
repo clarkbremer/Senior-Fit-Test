@@ -1,6 +1,6 @@
 <h1><%= @community.name %></h1>
 <h2><%= @community.city %>, <%= @community.state %></h2>
-<H2>Resdients:</H2>
+<H2>Residents:</H2>
 <%= link_to "Add a Resdient", new_community_resident_path(@community) %>
 <% @residents.each do |resident| %>
   <li>

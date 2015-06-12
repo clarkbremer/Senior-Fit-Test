@@ -11,11 +11,32 @@ class AssessorsController < ApplicationController
     authorize @assessor
   end
 
+  def new
+    @communities = Community.all
+    @assessor = Assessor.new
+  end
+
+  def create
+    @assessor = Assessor.new(secure_params)
+    authorize @assessor
+    if @assessor.save
+      redirect_to assessors_path, :notice => "Assessor Added."
+    else
+      render :edit
+    end
+  end
+
+  def edit
+    @communities = Community.all
+    @assessor = Assessor.find(params[:id])
+    authorize @assessor
+  end
+
   def update
     @assessor = Assessor.find(params[:id])
     authorize @assessor
     if @assessor.update_attributes(secure_params)
-      redirect_to assessors_path, :notice => "Assessor updated."
+      redirect_to assessor_path, :notice => "Assessor updated."
     else
       redirect_to assessors_path, :alert => "Unable to update assessor."
     end
@@ -31,7 +52,8 @@ class AssessorsController < ApplicationController
   private
 
   def secure_params
-    params.require(:assessor).permit(:name)
+    params[:assessor][:community_ids] ||= []
+    params.require(:assessor).permit(:name, community_ids: [])
   end
 
 end

@@ -1,0 +1,19 @@
+<%= render partial: "shared/errors", locals: {object: @assessor} %>
+
+<%= form_for(assessor) do |f| %>
+  <p>
+    <b>Name</b><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+  <% for community in @communities %>
+    <div>
+      <%= check_box_tag "assessor[community_ids][]", community.id, @assessor.communities.include?(community) %>
+      <%= community.name %>
+    </div>
+  <% end %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

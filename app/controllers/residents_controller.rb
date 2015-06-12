@@ -56,7 +56,7 @@ class ResidentsController < ApplicationController
     @resident = Resident.find(params[:id])
     authorize @resident
     @resident.destroy
-    redirect_to residents_path, :notice => "Resident deleted."
+    redirect_to community_path(@resident.community), :notice => "Resident deleted."
   end
 
   private

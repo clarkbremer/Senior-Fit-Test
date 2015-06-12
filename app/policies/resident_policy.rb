@@ -7,7 +7,7 @@ class ResidentPolicy
   end
 
   def index?
-    @current_user.assessor?
+    @current_user.admin?
   end
 
   def show?
@@ -17,7 +17,7 @@ class ResidentPolicy
   end
 
   def update?
-    @current_user.assessor?
+    @current_user.admin? or @current_user.assessor_for_resident?(@resident)
   end
 
   def edit?
@@ -29,7 +29,7 @@ class ResidentPolicy
   end
 
   def destroy?
-    @current_user.admin?
+    update?
   end
 
   class Scope

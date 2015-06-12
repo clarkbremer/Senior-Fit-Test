@@ -1,4 +1,4 @@
-<%= render partial: "errors" %>
+<%= render partial: "shared/errors", locals: {object: @assessment} %>
 
 <%= form_for [@resident, assessment] do |f| %>
   <p>

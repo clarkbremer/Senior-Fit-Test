@@ -1,4 +1,12 @@
-<p>Choose a resident to see their assessments:</p>
+<H1>All Residents</H1>
+<table>
+  <tr>
+    <th>Resident</th><th>Community</th>
+  </tr>
 <% @residents.each do |resident| %>
-  <li><%= link_to resident.name, community_resident_path %></li>
+  <tr>
+    <td><%= link_to resident.name, resident_path(resident) %></td>
+    <td><%= link_to resident.community.name, community_path(resident.community) %></td>
+  </tr>
 <% end %>
+</table>
