@@ -8,12 +8,7 @@
 </head>
 <body>
 <div class="container">
-  <ul class="hmenu">
-    <%= render 'devise/menu/login_items' %>
-  </ul>
-  <hr>
   <H1>Senior Fit Test</H1>
-  <hr>
   <% unless flash.empty? %>
     <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, class: name %>
@@ -21,6 +16,11 @@
     <hr>
   <% end %>
   <%= yield %>
+  <hr>
+  <ul class="hmenu">
+    <%= render 'devise/menu/login_items' %>
+  </ul>
+  <hr>
 </div>
 </body>
 </html>

@@ -2,21 +2,21 @@
 
 <%= form_for [@resident, login], url: resident_login_path do |f| %>
   <p>
-    <b>Resident Email</b><br>
+    <%= f.label :email %>:
     <%= f.email_field :email %>
   </p>
   <p>
-    <b>Password</b><br>
+    <%= f.label :password %>:
     <%= f.password_field :password %>
   </p>
   <p>
-    <b>Verify Password</b><br>
+    <%= f.label :password_confirmation %>:
     <%= f.password_field :password_confirmation %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit "Save Login", class: "btn btn-primary" %>
   </p>
   <p>
-    <%= link_to 'Cancel', resident_path(@resident) %>
+    <%= link_to 'Cancel', resident_path(@resident), class: "btn btn-primary"  %>
   </p>
 <% end %>

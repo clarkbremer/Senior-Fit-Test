@@ -22,12 +22,8 @@ class ResidentsController < ApplicationController
   def update
     @resident = Resident.find(params[:id])
     authorize @resident
-    if params[:resident][:user_attributes][:email].blank?
-      params[:resident].delete(:user_attributes)
-      @resident.user.destroy if @resident.user
-    end
     if @resident.update_attributes(secure_params)
-      redirect_to resident_path(@resident), :notice => "Resident updated."
+      redirect_to resident_path(@resident), notice: "Resident updated."
     else
       render :edit
     end
@@ -41,14 +37,11 @@ class ResidentsController < ApplicationController
 
   def create
     @community = Community.find(params[:community_id])
-    if params[:resident][:user_attributes][:email].blank?
-      params[:resident].delete(:user_attributes)
-    end
     @resident = @community.residents.build(secure_params)
     if @resident.save
-      redirect_to resident_path(@resident), :notice => "Resident Created."
+      redirect_to resident_path(@resident), notice: "Resident Created."
     else
-      render :edit
+      render :new
     end
   end
 
@@ -56,13 +49,29 @@ class ResidentsController < ApplicationController
     @resident = Resident.find(params[:id])
     authorize @resident
     @resident.destroy
-    redirect_to community_path(@resident.community), :notice => "Resident deleted."
+    redirect_to community_path(@resident.community), notice: "Resident deleted."
+  end
+
+  def make_assessor
+    p "make make_assessor"
+    @resident = Resident.find(params[:resident_id])
+    if @resident.user
+      @assessor = Assessor.new(resident: @resident)
+      @resident.user.person = @assessor
+      if @assessor.save
+        redirect_to resident_path(@resident), notice: "Resident is now an Assessor"
+      else
+        p "FAILED to save assessor"
+      end
+    else
+      render :edit, notice: "Resident must have login before becoming an Assessor"
+    end
   end
 
   private
 
   def secure_params
-    params.require(:resident).permit(:name, :birthdate, user_attributes: [:id, :email, :password])
+    params.require(:resident).permit(:first_name, :last_name, :birthdate, :address1, :address2, :city, :state, :zip, :phone)
   end
 
 end

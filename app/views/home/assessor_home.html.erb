@@ -1,3 +1,7 @@
-<H1>Welcome, <%= @assessor.name %></H1>
-<h2>You are an assessor.</h2>
-<H3><%= link_to 'View Communities', communities_path %></H3>
+<H1>Welcome, <%= @assessor.first_name %></H1>
+<H3>You are an assessor for these communities:</H3>
+<% @assessor.communities.each do |community| %>
+  <li>
+    <%= link_to community.name, community_path(community) %>
+  </li>
+<% end %>

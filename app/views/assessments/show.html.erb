@@ -1,8 +1,12 @@
 <h1>Assessment for <%= link_to @assessment.resident.name, resident_path(@assessment.resident) %></h1>
 <h2>Assessment Date: <%= @assessment.date %></h2>
+<hr>
 <p>Chair stand: <%= @assessment.chair_stand %></p>
 <p>Arm curl: <%= @assessment.arm_curl %></p>
 <p>Two minute step: <%= @assessment.two_minute_step %></p>
 <p>Sit and reach: <%= @assessment.sit_and_reach %></p>
 <p>Back scratch: <%= @assessment.back_scratch %></p>
 <p>Eight foot up and go: <%= @assessment.eight_foot_up_and_go %></p>
+<hr>
+<%= link_to "Edit Assessmnet", edit_assessment_path(@assessment) %>
+

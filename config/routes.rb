@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :assessors
-  resources :residents
+  resources :residents do
+    put :make_assessor
+  end
   shallow do
     resources :communities do
       resources :residents do

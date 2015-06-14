@@ -1,4 +1,4 @@
-<H1>Welcome, <%= @resident.name %></H1>
+<H1>Welcome, <%= @resident.first_name %></H1>
 <h2>You are a resident of <%= @resident.community.name %>.</h2>
 <H3>Here are your assessments:</H3>
 <% @resident.assessments.each do |assessment| %>

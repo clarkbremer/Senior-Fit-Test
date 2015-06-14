@@ -20,7 +20,7 @@ class AssessmentsController < ApplicationController
     @assessment = Assessment.find(params[:id])
     authorize @assessment
     if @assessment.update_attributes(secure_params)
-      redirect_to resident_path(@assessment.resident), :notice => "Assessment updated."
+      redirect_to assessment_path(@assessment), :notice => "Assessment updated."
     else
       render :edit
     end

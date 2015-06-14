@@ -2,24 +2,42 @@
 
 <%= form_for [@community, resident] do |f| %>
   <p>
-    <b>Resident Name</b><br>
-    <%= f.text_field :name %>
+    <%= f.label :first_name %>:
+    <%= f.text_field :first_name %>
   </p>
   <p>
-    <b>Birthdate</b><br>
+    <%= f.label :last_name %>:
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :birthdate %>:
     <%= f.date_field :birthdate %>
   </p>
-  <%= f.fields_for :user do |u| %>
-    <p>
-      <b>Resident Email</b><br>
-      <%= u.email_field :email %>
-    </p>
-    <p>
-      <b>Resident Password</b><br>
-      <%= u.password_field :password %>
-    </p>
-  <% end %>
   <p>
-    <%= f.submit %>
+    <%= f.label :address1, "Address" %>:
+    <%= f.text_field :address1 %>
   </p>
+  <p>
+    <%= f.label :address2, "Unit or Apt #" %>:
+    <%= f.text_field :address2 %>
+  </p>
+  <p>
+    <%= f.label :city %>:
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :state %>:
+    <%= f.text_field :state %>
+  </p>
+  <p>
+    <%= f.label :zip, "Zipcode" %>:
+    <%= f.text_field :zip %>
+  </p>
+  <p>
+    <%= f.label :phone, "Phone Number" %>:
+    <%= f.text_field :phone %>
+  </p>
+
+  <hr>
+  <%= f.submit "Save Changes", class: "btn btn-success" %>
 <% end %>

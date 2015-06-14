@@ -32,6 +32,10 @@ class ResidentPolicy
     update?
   end
 
+  def make_assessor?
+    @current_user.admin?
+  end
+
   class Scope
     attr_reader :user, :scope
 

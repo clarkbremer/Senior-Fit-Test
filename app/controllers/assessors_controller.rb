@@ -38,7 +38,7 @@ class AssessorsController < ApplicationController
     if @assessor.update_attributes(secure_params)
       redirect_to assessor_path, :notice => "Assessor updated."
     else
-      redirect_to assessors_path, :alert => "Unable to update assessor."
+      redirect_to assessor_path, :alert => "Unable to update assessor."
     end
   end
 
@@ -53,7 +53,7 @@ class AssessorsController < ApplicationController
 
   def secure_params
     params[:assessor][:community_ids] ||= []
-    params.require(:assessor).permit(:name, community_ids: [])
+    params.require(:assessor).permit(resident_attributes: [:id, :first_name, :last_name], community_ids: [])
   end
 
 end

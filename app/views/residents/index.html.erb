@@ -5,7 +5,7 @@
   </tr>
 <% @residents.each do |resident| %>
   <tr>
-    <td><%= link_to resident.name, resident_path(resident) %></td>
+    <td><%= link_to "#{resident.first_name} #{resident.last_name}", resident_path(resident) %></td>
     <td><%= link_to resident.community.name, community_path(resident.community) %></td>
   </tr>
 <% end %>

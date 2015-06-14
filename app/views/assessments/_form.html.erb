@@ -6,27 +6,27 @@
     <%= f.date_field :date %>
   </p>
   <p>
-    <b>chair_stand</b><br>
+    <b>Chair Stand</b><br>
     <%= f.number_field :chair_stand %>
   </p>
   <p>
-    <b>arm_curl</b><br>
+    <b>Arm Curl</b><br>
     <%= f.number_field :arm_curl %>
   </p>
   <p>
-    <b>two_minute_step</b><br>
+    <b>Two Minute Step</b><br>
     <%= f.number_field :two_minute_step %>
   </p>
   <p>
-    <b>sit_and_reach</b><br>
+    <b>Sit and Reach</b><br>
     <%= f.text_field :sit_and_reach, :value => (number_with_precision(f.object.sit_and_reach, :precision => 1) || 0) %>
   </p>
   <p>
-    <b>back_scratch</b><br>
+    <b>Back Scratch</b><br>
     <%= f.text_field :back_scratch, :value => (number_with_precision(f.object.back_scratch, :precision => 1) || 0) %>
   </p>
   <p>
-    <b>eight_foot_up_and_go</b><br>
+    <b>Eight Foot Up and Go</b><br>
     <%= f.text_field :eight_foot_up_and_go, :value => (number_with_precision(f.object.eight_foot_up_and_go, :precision => 1) || 0) %>
   </p>
   <p>
