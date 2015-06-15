@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150613025622) do
     t.date    "birthdate"
     t.string  "first_name"
     t.string  "last_name"
+    t.string  "gender"
     t.string  "address1"
     t.string  "address2"
     t.string  "city"

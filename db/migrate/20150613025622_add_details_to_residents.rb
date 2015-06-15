@@ -7,6 +7,7 @@ class AddDetailsToResidents < ActiveRecord::Migration
     remove_column :residents, :name, :string
     add_column :residents, :first_name, :string
     add_column :residents, :last_name, :string
+    add_column :residents, :gender, :string
     add_column :residents, :address1, :string
     add_column :residents, :address2, :string
     add_column :residents, :city, :string

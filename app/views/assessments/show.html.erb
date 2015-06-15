@@ -8,5 +8,6 @@
 <p>Back scratch: <%= @assessment.back_scratch %></p>
 <p>Eight foot up and go: <%= @assessment.eight_foot_up_and_go %></p>
 <hr>
-<%= link_to "Edit Assessmnet", edit_assessment_path(@assessment) %>
-
+<% if policy(:resident).edit? %>
+  <%= link_to "Edit Assessmnet", edit_assessment_path(@assessment) %>
+<% end %>

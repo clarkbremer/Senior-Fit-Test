@@ -19,17 +19,17 @@
   </p>
   <p>
     <b>Sit and Reach</b><br>
-    <%= f.text_field :sit_and_reach, :value => (number_with_precision(f.object.sit_and_reach, :precision => 1) || 0) %>
+    <%= f.number_field :sit_and_reach, :step => 0.01 %>
   </p>
   <p>
     <b>Back Scratch</b><br>
-    <%= f.text_field :back_scratch, :value => (number_with_precision(f.object.back_scratch, :precision => 1) || 0) %>
+    <%= f.number_field :back_scratch, :step => 0.01  %>
   </p>
   <p>
     <b>Eight Foot Up and Go</b><br>
-    <%= f.text_field :eight_foot_up_and_go, :value => (number_with_precision(f.object.eight_foot_up_and_go, :precision => 1) || 0) %>
+    <%= f.number_field :eight_foot_up_and_go, :step => 0.01  %>
   </p>
   <p>
-    <%= f.submit %>
+    <%= f.submit class: "btn btn-success" %>
   </p>
 <% end %>

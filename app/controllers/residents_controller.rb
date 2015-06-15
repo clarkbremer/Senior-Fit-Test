@@ -53,7 +53,6 @@ class ResidentsController < ApplicationController
   end
 
   def make_assessor
-    p "make make_assessor"
     @resident = Resident.find(params[:resident_id])
     if @resident.user
       @assessor = Assessor.new(resident: @resident)
@@ -61,7 +60,7 @@ class ResidentsController < ApplicationController
       if @assessor.save
         redirect_to resident_path(@resident), notice: "Resident is now an Assessor"
       else
-        p "FAILED to save assessor"
+        redirect_to resident_path(@resident), notice: "Was unable to create an Assessor"
       end
     else
       render :edit, notice: "Resident must have login before becoming an Assessor"
@@ -71,7 +70,7 @@ class ResidentsController < ApplicationController
   private
 
   def secure_params
-    params.require(:resident).permit(:first_name, :last_name, :birthdate, :address1, :address2, :city, :state, :zip, :phone)
+    params.require(:resident).permit(:first_name, :last_name, :birthdate, :gender, :address1, :address2, :city, :state, :zip, :phone)
   end
 
 end
