@@ -10,18 +10,19 @@
 <p>Apt: <%= @resident.address2 %></p>
 <p>City: <%= @resident.city %></p>
 <p>State: <%= @resident.state %></p>
-<p>Zip Ccode: <%= @resident.zip %></p>
+<p>Zip Code: <%= @resident.zip %></p>
 <p>Phone Number: <%= @resident.phone %></p>
 <% if @resident.user %>
   <p>email: <%= @resident.user.email %></p>
 <% end %>
 <hr>
 
+<%= render 'assessments_chart' %>
 <H2>Assessments:</H2>
 <% @resident.assessments.each do |assessment| %>
   <p><%= link_to assessment.date, assessment %></p>
 <% end %>
-<% if policy(:resident).edit? %>
+<% if policy(@resident).edit? %>
   <hr>
   <p><%= link_to "Add a new Assessment", new_resident_assessment_path(@resident), class: "btn btn-success" %></p>
   <hr>

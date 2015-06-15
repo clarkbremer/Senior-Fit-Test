@@ -29,5 +29,8 @@ namespace :db do
     a2.communities << c3
     temp = Resident.create!(community: c1, first_name: "Andy", last_name: "Admin", birthdate: "1943/11/15", gender: "Male")
     admin = Admin.create!(resident: temp, user_attributes: {email: "admin@a.com", password: 'password', password_confirmation: 'password'})
+    Assessment.create!(resident: r1a, date: Date.parse('Jan 15, 2015'), chair_stand: 5, arm_curl: 8, two_minute_step: 15, sit_and_reach: 18.25, back_scratch: 1.5, eight_foot_up_and_go: 4.3)
+    Assessment.create!(resident: r1a, date: Date.parse('Feb 15, 2015'), chair_stand: 6, arm_curl: 10, two_minute_step: 20, sit_and_reach: 19.25, back_scratch: 1.5, eight_foot_up_and_go: 3.3)
+    Assessment.create!(resident: r1a, date: Date.parse('Mar 15, 2015'), chair_stand: 7, arm_curl: 12, two_minute_step: 25, sit_and_reach: 20.25, back_scratch: 1.5, eight_foot_up_and_go: 2.3)
   end
 end

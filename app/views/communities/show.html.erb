@@ -7,5 +7,12 @@
     <%= link_to resident.name, resident_path(resident) %>
   </li>
 <% end %>
-<hr>
 <%= link_to "Add a Resdient", new_community_resident_path(@community), class: "btn btn-success"  %>
+<hr>
+<H2>Assessors:</H2>
+<% @community.assessors.each do |assessor| %>
+  <li>
+    <%= link_to assessor.name, assessor_path(assessor) %>
+  </li>
+<% end %>
+<hr>

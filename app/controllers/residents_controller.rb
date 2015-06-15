@@ -9,6 +9,7 @@ class ResidentsController < ApplicationController
   def show
     @resident = Resident.find(params[:id])
     authorize @resident
+    @chart_data = @resident.assessment_chart_data
   end
 
   def edit

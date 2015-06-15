@@ -2,15 +2,15 @@
 <table>
   <% @communities.each do |community| %>
     <tr>
-    <td><%= link_to community.name, community_path(community) %> (<%= community.city %>, <%= community.state %>)</td>
-    <td><%= link_to "Edit", edit_community_path(community), class: "btn btn-primary btn-xs" %></td>
-    <% if current_user.admin? %>
-      <td><%= link_to "Delete", community_path(community), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning btn-xs" %></td>
-  <% end %>
-  </tr>
+      <td><%= link_to community.name, community_path(community) %> (<%= community.city %>, <%= community.state %>)</td>
+      <td><%= link_to "Edit", edit_community_path(community), class: "btn btn-primary btn-xs" %></td>
+      <% if policy(:community).destroy? %>
+        <td><%= link_to "Delete", community_path(community), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning btn-xs" %></td>
+      <% end %>
+    </tr>
   <% end %>
 </table>
-<% if current_user.admin? %>
+<% if policy(:community).create? %>
   <hr>
   <%= link_to "Add a Community", new_community_path, class: "btn btn-primary" %>
 <% end %>

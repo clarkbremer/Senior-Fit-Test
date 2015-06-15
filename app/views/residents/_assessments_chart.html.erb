@@ -1,0 +1,38 @@
+<div id="assessments_chart"></div>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  console.log("ready")
+
+  var chart_json = <%= raw @chart_data %>
+  console.log("Chart JSON:")
+  console.log(chart_json)
+
+  var chart = c3.generate({
+    bindto: "#assessments_chart",
+    data: {
+      json: chart_json,
+      type: 'bar',
+      x: 'tests'
+    },
+    bar: {
+      width: {
+          ratio: 0.5 // this makes bar width 50% of length between ticks
+      }
+      // or
+      //width: 100 // this makes bar width 100px
+    },
+    color: {
+      pattern: [ '#3399cc', '#99cc00', '#d70014', '#fc006a', '#471e8e', '#f16724', '#a1a1a1' ]
+    },
+    axis: {
+      x: {
+        type: 'category'
+      }
+    }
+  });
+
+});
+</script>
