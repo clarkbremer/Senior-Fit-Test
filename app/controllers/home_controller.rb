@@ -9,7 +9,7 @@ class HomeController < ApplicationController
       render 'assessor_home'
     when "Resident"
       @resident = current_user.person
-      render 'resident_home'
+      redirect_to resident_path(@resident), notice: "Welcome, #{@resident.first_name}."
     end
   end
 end

@@ -7,29 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to 'Rikli-Jones Senior Fit Test', root_path, class: "navbar-brand" %>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Back', :back %></li>
+        <li>
+        <% unless controller_name == "sessions" %>
+          <% if user_signed_in? %>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+          <% else %>
+            <%= link_to('Login', new_user_session_path)  %>
+          <% end %>
+        <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <div class="container">
   <div class="row">
-    <div class="col-md-4 vcenter text-primary" >
-      <H1>Senior Fit Test</H1>
-    </div>
-    <div class="col-md-6 vcenter">
+    <div class="col-md-6">
       <%= image_tag "van_logo.png", style: "padding: 16px" %>
     </div>
   </div>
-  <% unless flash.empty? %>
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
-    <hr>
-  <% end %>
+  <%= flash_messages %>
   <%= yield %>
-  <% unless controller_name == "sessions" %>
-    <hr>
-    <ul class="hmenu">
-      <%= render 'devise/menu/login_items' %>
-    </ul>
-    <hr>
-  <% end %>
 </div>
 </body>
 </html>

@@ -1,7 +1,6 @@
 <h1>Edit Resident</h1>
 <%= render partial: "form", locals: {resident: @resident} %>
-<%= link_to 'Cancel', resident_path(@resident), class: "btn btn-primary" %>
 <%= link_to "Delete this Resident", resident_path(@resident), method: :delete, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
 <% if policy(:resident).make_assessor? %>
-  <%= link_to "Make this Resident an Assessor", resident_make_assessor_path(@resident), method: :put, class: "btn btn-primary" %>
+  <%= link_to "Make this Resident an Assessor", resident_make_assessor_path(@resident), method: :put, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
 <% end %>

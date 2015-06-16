@@ -1,12 +1,37 @@
+<div class=col-md-6>
 <H1>All Residents</H1>
-<table>
+<table class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+  <thead>
   <tr>
-    <th>Resident</th><th>Community</th>
+    <th>Community</th><th>First Name</th><th>Last Name</th><th>Actions</th>
   </tr>
-<% @residents.each do |resident| %>
-  <tr>
-    <td><%= link_to "#{resident.first_name} #{resident.last_name}", resident_path(resident) %></td>
-    <td><%= link_to resident.community.name, community_path(resident.community) %></td>
-  </tr>
-<% end %>
+  </thead>
+  <tbody>
+  <% @residents.each do |resident| %>
+    <tr>
+      <td><%= link_to resident.community.name, community_path(resident.community) %></td>
+      <td><%= resident.first_name %></td>
+      <td><%= resident.last_name %></td>
+      <td><%= link_to "Show", resident_path(resident), class: "btn btn-primary btn-xs" %>
+          <%= link_to "Edit", edit_resident_path(resident), class: "btn btn-primary btn-xs" %>
+        <% if policy(:resident).destroy? %>
+          <%= link_to "Delete", resident_path(resident), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning btn-xs" %>
+        <% end %>
+      </td>
+
+    </tr>
+  <% end %>
+  </tbody>
 </table>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.dtable').DataTable({
+    "pageLength": 15,
+    "lengthMenu": [ [10, 15, 25, 50, -1], [10, 15, 25, 50, "All"] ],
+    "order": [[ 1, "asc" ]],
+    "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [ 3 ] }]  });
+});
+</script>
+

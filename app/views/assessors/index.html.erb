@@ -1,6 +1,20 @@
 <H1>Assessors</H1>
-<% @assessors.each do |assessor| %>
-  <li>
-    <%= link_to assessor.name, assessor_path(assessor) %>
-  </li>
-<% end %>
+<div class=col-md-6>
+<table class='cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+  <thead>
+    <th>Assessor</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <% @assessors.each do |assessor| %>
+    <tr>
+      <td><%= link_to assessor.name, assessor_path(assessor) %></td>
+      <td>
+        <%= link_to "Show", assessor_path(assessor), class: "btn btn-primary btn-xs"  %>
+        <%= link_to "Edit", edit_assessor_path(assessor), class: "btn btn-primary btn-xs"  %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

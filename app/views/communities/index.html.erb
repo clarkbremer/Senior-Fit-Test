@@ -1,16 +1,31 @@
 <H2>Communities</H2>
-<table>
+<div class=col-md-6>
+<table class='cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+  <thead>
+    <tr>
+      <th>Community</th>
+      <th>Location</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @communities.each do |community| %>
     <tr>
-      <td><%= link_to community.name, community_path(community) %> (<%= community.city %>, <%= community.state %>)</td>
-      <td><%= link_to "Edit", edit_community_path(community), class: "btn btn-primary btn-xs" %></td>
-      <% if policy(:community).destroy? %>
-        <td><%= link_to "Delete", community_path(community), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning btn-xs" %></td>
-      <% end %>
+      <td><%= link_to community.name, community_path(community) %></td>
+      <td><%= community.city %>, <%= community.state %></td>
+      <td>
+        <%= link_to "Show", community_path(community), class: "btn btn-primary btn-xs" %>
+        <%= link_to "Edit", edit_community_path(community), class: "btn btn-primary btn-xs" %>
+        <% if policy(:community).destroy? %>
+          <%= link_to "Delete", community_path(community), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning btn-xs" %>
+        <% end %>
+      </td>
     </tr>
   <% end %>
+  </tbody>
 </table>
 <% if policy(:community).create? %>
   <hr>
   <%= link_to "Add a Community", new_community_path, class: "btn btn-primary" %>
 <% end %>
+</div>

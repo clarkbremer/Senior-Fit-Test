@@ -1,39 +1,43 @@
 <H2>Resident: <%= @resident.name %></H2>
-<% if policy(:community).show? %>
-  <p>Community: <%= link_to @resident.community.name, community_path(@resident.community) %></p>
-<% else %>
-  <p>Community: <%= @resident.community.name %></p>
-<% end %>
-<p>Birthdate: <%= @resident.birthdate %> (Age: <%= age(@resident.birthdate) %> )</p>
-<p>Gender: <%= @resident.gender %>
-<p>Address: <%= @resident.address1 %></p>
-<p>Apt: <%= @resident.address2 %></p>
-<p>City: <%= @resident.city %></p>
-<p>State: <%= @resident.state %></p>
-<p>Zip Code: <%= @resident.zip %></p>
-<p>Phone Number: <%= @resident.phone %></p>
-<% if @resident.user %>
-  <p>email: <%= @resident.user.email %></p>
-<% end %>
+<div class=row>
+  <div class=col-md-6>
+    <% if policy(:community).show? %>
+      <p>Community: <%= link_to @resident.community.name, community_path(@resident.community) %></p>
+    <% else %>
+      <p>Community: <%= @resident.community.name %></p>
+    <% end %>
+    <p>Birthdate: <%= @resident.birthdate %> (Age: <%= age(@resident.birthdate) %> )</p>
+    <p>Gender: <%= @resident.gender %>
+    <p>Phone Number: <%= @resident.phone %></p>
+    <% if @resident.user %>
+      <p>email: <%= @resident.user.email %></p>
+    <% end %>
+  </div>
+  <div class=col-md-6>
+    <p>Address: <%= @resident.address1 %></p>
+    <p>Apt: <%= @resident.address2 %></p>
+    <p>City: <%= @resident.city %></p>
+    <p>State: <%= @resident.state %></p>
+    <p>Zip Code: <%= @resident.zip %></p>
+  </div>
+</div>
 <hr>
 
 <%= render 'assessments_chart' %>
-<H2>Assessments:</H2>
-<% @resident.assessments.each do |assessment| %>
-  <p><%= link_to assessment.date, assessment %></p>
-<% end %>
 <% if policy(@resident).edit? %>
   <hr>
   <p><%= link_to "Add a new Assessment", new_resident_assessment_path(@resident), class: "btn btn-success" %></p>
   <hr>
   <%= link_to "Edit Resident Details", edit_resident_path(@resident), class: "btn btn-primary" %>
+  <% if @resident.user %>
+    <%= link_to "Edit login info", edit_resident_login_path(@resident), class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Add resident login", new_resident_login_path(@resident), class: "btn btn-primary" %>
+  <% end %>
   <%= link_to "Delete this Resident", resident_path(@resident), method: :delete, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
   <hr>
 <% end %>
-<% if @resident.user %>
-  <H4>Login Info:</H4>
-  <%= link_to "Edit login info", edit_resident_login_path(@resident), class: "btn btn-primary" %>
-<% else %>
-  <H4>This resident does not have a login</H4>
-  <%= link_to "Add resident login", new_resident_login_path(@resident), class: "btn btn-primary" %>
+<H2>Previous Assessments:</H2>
+<% @resident.assessments.each do |assessment| %>
+  <p><%= link_to assessment.date, assessment, class: "btn btn-primary" %></p>
 <% end %>
