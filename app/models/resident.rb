@@ -1,6 +1,7 @@
 class Resident < Person
   has_many :assessments, dependent: :destroy
   belongs_to :community
+  has_one :assessor, dependent: :destroy
 
   validates_presence_of :community
   validates_presence_of :birthdate

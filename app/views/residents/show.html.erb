@@ -21,23 +21,28 @@
     <p>Zip Code: <%= @resident.zip %></p>
   </div>
 </div>
-<hr>
 
-<%= render 'assessments_chart' %>
-<% if policy(@resident).edit? %>
-  <hr>
-  <p><%= link_to "Add a new Assessment", new_resident_assessment_path(@resident), class: "btn btn-success" %></p>
-  <hr>
-  <%= link_to "Edit Resident Details", edit_resident_path(@resident), class: "btn btn-primary" %>
-  <% if @resident.user %>
-    <%= link_to "Edit login info", edit_resident_login_path(@resident), class: "btn btn-primary" %>
-  <% else %>
-    <%= link_to "Add resident login", new_resident_login_path(@resident), class: "btn btn-primary" %>
+<hr>
+<div class=col-md-9>
+  <%= render 'assessments_chart' %>
+</div>
+
+<div class=col-md-6>
+  <% if policy(@resident).edit? %>
+    <hr>
+    <p><%= link_to "Add a new Assessment", new_resident_assessment_path(@resident), class: "btn btn-success" %></p>
+    <hr>
+    <%= link_to "Edit Resident Details", edit_resident_path(@resident), class: "btn btn-primary" %>
+    <% if @resident.user %>
+      <%= link_to "Edit login info", edit_resident_login_path(@resident), class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to "Add resident login", new_resident_login_path(@resident), class: "btn btn-primary" %>
+    <% end %>
+    <%= link_to "Delete this Resident", resident_path(@resident), method: :delete, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
+    <hr>
   <% end %>
-  <%= link_to "Delete this Resident", resident_path(@resident), method: :delete, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
-  <hr>
-<% end %>
-<H2>Previous Assessments:</H2>
-<% @resident.assessments.each do |assessment| %>
-  <p><%= link_to assessment.date, assessment, class: "btn btn-primary" %></p>
-<% end %>
+  <H2>Previous Assessments:</H2>
+  <% @resident.assessments.order(date: :desc).each do |assessment| %>
+    <p><%= link_to assessment.date, assessment, class: "btn btn-primary" %></p>
+  <% end %>
+</div>
