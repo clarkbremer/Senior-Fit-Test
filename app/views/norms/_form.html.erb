@@ -1,0 +1,17 @@
+<%= render partial: "shared/errors", locals: {object: @norm} %>
+
+<%= form_for(norm) do |f| %>
+  <% i=0 %>
+  <% 95.step(5, -5) do |percentile| %>
+    <p>
+      <%= percentile %>:
+      <input step="0.01" type="number" value="<%= @norm.scores[i] %>" name="norm[scores][]" id="norm_scores_<%= i %>">
+    </p>
+    <% i += 1 %>
+  <% end %>
+  <p>
+    <%= f.submit 'Save and Edit Next', name: 'save_and_edit_next', class: "btn btn-success" %>
+    <%= f.submit class: "btn btn-success"  %>
+    <%= link_to "Cancel", norms_path, class: "btn btn-primary" %>
+  </p>
+<% end %>

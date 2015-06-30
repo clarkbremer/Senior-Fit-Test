@@ -1,0 +1,33 @@
+<div class=col-md-8>
+<H1>All Norms</H1>
+<table class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+  <thead>
+  <tr>
+    <th>Test</th><th>Gender</th><th>Min Age</th><th>Max Age</th><th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @norms.each do |norm| %>
+    <tr>
+      <td><%= norm.test.titleize %></td>
+      <td><%= norm.gender %></td>
+      <td><%= norm.min_age %></td>
+      <td><%= norm.max_age %></td>
+      <td>
+        <%= link_to "Show", norm_path(norm), class: "btn btn-primary btn-xs" %>
+        <%= link_to "Edit", edit_norm_path(norm), class: "btn btn-primary btn-xs" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.dtable').DataTable({
+    "pageLength": 84,
+    "order": [[ 0, "asc" ], [ 1, "dsc" ], [ 2, "asc" ]],
+    "aoColumnDefs": [{ 'bSortable': false, 'aTargets': [ 4 ] }]  });
+});
+</script>

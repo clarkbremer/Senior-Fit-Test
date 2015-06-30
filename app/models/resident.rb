@@ -15,10 +15,16 @@ class Resident < Person
   def assessment_chart_data
     data = {}
     assessments.each do |assessment|
-      data[assessment.date.to_s] = [assessment.chair_stand, assessment.arm_curl, assessment.two_minute_step, assessment.sit_and_reach, assessment.back_scratch, assessment.eight_foot_up_and_go]
+      data[assessment.date.to_s] = assessment.percentiles
+      puts "Percentiles: #{assessment.percentiles.inspect}"
     end
     data["tests"] = ['Chair stand', 'Arm curl', 'Two minute step', 'Sit and reach', 'Back scratch', 'Eight foot up and go']
     data.to_json
+  end
+
+  def age
+    now = Time.now.utc.to_date
+    now.year - birthdate.year - ((now.month > birthdate.month || (now.month == birthdate.month && now.day >= birthdate.day)) ? 0 : 1)
   end
 
 private

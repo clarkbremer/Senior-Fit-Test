@@ -1,0 +1,18 @@
+<div class=col-md-8>
+  <H1><%= @norm.test.titleize %> Percentile Norms</H1>
+  <H2> for <%= @norm.gender.pluralize %> age <%= @norm.min_age %>-<%= @norm.max_age %></H2>
+  <hr>
+  <table class='cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+    <thead>
+      <tr><th>Percentile</th><th>Raw Score</th></tr>
+    </thead>
+    <tbody>
+      <% @percentiles.each do |p, s| %>
+        <tr>
+          <td><%= p %></td>
+          <td><%= s %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

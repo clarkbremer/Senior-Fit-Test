@@ -1,0 +1,4 @@
+<h1>Edit Percentile Norms</h1>
+  <H2><%= @norm.test.titleize %></H2>
+  <H3> for <%= @norm.gender.pluralize %> age <%= @norm.min_age %>-<%= @norm.max_age %></H3>
+<%= render partial: "form", locals: {norm: @norm} %>

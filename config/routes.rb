@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'home#home_redirect'
   devise_for :users
   resources :users
+  resources :norms
   resources :assessors
   resources :residents do
     put :make_assessor
