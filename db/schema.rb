@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628153847) do
+ActiveRecord::Schema.define(version: 20150630023900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(version: 20150628153847) do
     t.decimal "sit_and_reach"
     t.decimal "back_scratch"
     t.decimal "eight_foot_up_and_go"
+    t.integer "chair_stand_percentile"
+    t.integer "arm_curl_percentile"
+    t.integer "two_minute_step_percentile"
+    t.integer "sit_and_reach_percentile"
+    t.integer "back_scratch_percentile"
+    t.integer "eight_foot_up_and_go_percentile"
   end
 
   add_index "assessments", ["resident_id"], name: "index_assessments_on_resident_id", using: :btree

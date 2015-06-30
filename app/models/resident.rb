@@ -6,7 +6,8 @@ class Resident < Person
   validates_presence_of :community
   validates_presence_of :birthdate
   validates_presence_of :gender
-  validates :gender, :inclusion => %w(Male Female)
+  validates :gender, :inclusion => %w(male female)
+  validate :age_range
 
   def name
     "#{first_name} #{last_name}"
@@ -16,10 +17,13 @@ class Resident < Person
     data = {}
     assessments.each do |assessment|
       data[assessment.date.to_s] = assessment.percentiles
-      puts "Percentiles: #{assessment.percentiles.inspect}"
     end
     data["tests"] = ['Chair stand', 'Arm curl', 'Two minute step', 'Sit and reach', 'Back scratch', 'Eight foot up and go']
     data.to_json
+  end
+
+  def has_assessments?
+    self.assessments.any?
   end
 
   def age
@@ -28,5 +32,9 @@ class Resident < Person
   end
 
 private
-
+  def age_range
+    if self.age < 65 || self.age > 94
+      errors.add(:birthday, "Must be between 65 and 94 years of age.")
+    end
+  end
 end

@@ -1,8 +1,4 @@
 module ApplicationHelper
-  def age(dob)
-    now = Time.now.utc.to_date
-    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
-  end
 
   def bootstrap_class_for flash_type
     ({ success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }.with_indifferent_access)[flash_type] || flash_type.to_s

@@ -6,7 +6,7 @@
     <% else %>
       <p>Community: <%= @resident.community.name %></p>
     <% end %>
-    <p>Birthdate: <%= @resident.birthdate %> (Age: <%= age(@resident.birthdate) %> )</p>
+    <p>Birthdate: <%= @resident.birthdate %> (Age: <%= @resident.age %> )</p>
     <p>Gender: <%= @resident.gender %>
     <p>Phone Number: <%= @resident.phone %></p>
     <% if @resident.user %>
@@ -24,7 +24,7 @@
 
 <hr>
 <div class=col-md-9>
-  <%= render 'assessments_chart' %>
+  <%= render 'assessments_chart' if @resident.has_assessments? %>
 </div>
 
 <div class=col-md-6>
@@ -41,8 +41,10 @@
     <%= link_to "Delete this Resident", resident_path(@resident), method: :delete, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
     <hr>
   <% end %>
-  <H2>Previous Assessments:</H2>
-  <% @resident.assessments.order(date: :desc).each do |assessment| %>
-    <p><%= link_to assessment.date, assessment, class: "btn btn-primary" %></p>
+  <% if @resident.has_assessments? %>
+    <H2>Assessment Details:</H2>
+    <% @resident.assessments.order(date: :desc).each do |assessment| %>
+      <p><%= link_to assessment.date, assessment, class: "btn btn-primary" %></p>
+    <% end %>
   <% end %>
 </div>
