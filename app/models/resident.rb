@@ -1,7 +1,7 @@
 class Resident < Person
   has_many :assessments, dependent: :destroy
   belongs_to :community
-  has_one :assessor, dependent: :destroy
+  has_one :assessor, dependent: :destroy  # only if they are an assessor
 
   validates_presence_of :community
   validates_presence_of :birthdate
@@ -29,6 +29,10 @@ class Resident < Person
   def age
     now = Time.now.utc.to_date
     now.year - birthdate.year - ((now.month > birthdate.month || (now.month == birthdate.month && now.day >= birthdate.day)) ? 0 : 1)
+  end
+
+  def is_assessor?
+    assessor.present?
   end
 
 private

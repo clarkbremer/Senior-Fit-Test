@@ -13,7 +13,7 @@
       <td><%= resident.first_name %></td>
       <td><%= resident.last_name %></td>
       <td class="center-text">
-        <% if resident.assessor %>
+        <% if resident.is_assessor? %>
         <span class="glyphicon glyphicon-ok"></span>
         <% end %>
       </td>

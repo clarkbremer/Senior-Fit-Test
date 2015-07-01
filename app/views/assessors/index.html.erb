@@ -12,6 +12,7 @@
       <td>
         <%= link_to "Show", assessor_path(assessor), class: "btn btn-primary btn-xs"  %>
         <%= link_to "Edit", edit_assessor_path(assessor), class: "btn btn-primary btn-xs"  %>
+        <%= link_to "Remove", assessor_path(assessor), method: :delete, data: { confirm: "Are you sure?  This will remove assessor privilges for this resident (but will not delete the resident)" }, class: "btn btn-warning btn-xs" %>
       </td>
     </tr>
     <% end %>

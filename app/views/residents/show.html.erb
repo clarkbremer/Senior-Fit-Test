@@ -7,7 +7,7 @@
       <p>Community: <%= @resident.community.name %></p>
     <% end %>
     <p>Birthdate: <%= @resident.birthdate %> (Age: <%= @resident.age %> )</p>
-    <p>Gender: <%= @resident.gender %>
+    <p>Gender: <%= @resident.gender.titleize %>
     <p>Phone Number: <%= @resident.phone %></p>
     <% if @resident.user %>
       <p>email: <%= @resident.user.email %></p>

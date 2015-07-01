@@ -2,5 +2,7 @@
 <%= render partial: "form", locals: {resident: @resident} %>
 <%= link_to "Delete this Resident", resident_path(@resident), method: :delete, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
 <% if policy(:resident).make_assessor? %>
-  <%= link_to "Make this Resident an Assessor", resident_make_assessor_path(@resident), method: :put, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
+  <% unless @resident.is_assessor? %>
+    <%= link_to "Make this Resident an Assessor", resident_make_assessor_path(@resident), method: :put, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
+  <% end %>
 <% end %>

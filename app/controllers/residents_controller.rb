@@ -58,8 +58,9 @@ class ResidentsController < ApplicationController
     if @resident.user
       @assessor = Assessor.new(resident: @resident)
       @resident.user.person = @assessor
+      @resident.user.save
       if @assessor.save
-        redirect_to resident_path(@resident), notice: "Resident is now an Assessor"
+        redirect_to edit_assessor_path(@assessor), notice: "Resident is now an Assessor"
       else
         redirect_to resident_path(@resident), notice: "Was unable to create an Assessor"
       end
