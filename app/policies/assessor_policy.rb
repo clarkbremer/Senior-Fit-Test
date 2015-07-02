@@ -7,28 +7,28 @@ class AssessorPolicy
   end
 
   def index?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
   def show?
-    @current_user.admin? or
-    @current_user == @assessor.user
+    @current_user.is_admin? or
+    @current_user == @assessor.resident.user
   end
 
   def update?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
   def edit?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
   def create?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
   def destroy?
-    @current_user.admin?
+    @current_user.is_admin? && assessor.resident.is_admin? == false
   end
 
   class Scope
@@ -40,7 +40,7 @@ class AssessorPolicy
     end
 
     def resolve
-      if user.admin?
+      if user.is_admin?
         scope.all
       end
     end

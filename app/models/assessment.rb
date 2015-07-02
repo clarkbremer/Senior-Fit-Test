@@ -1,5 +1,6 @@
 class Assessment < ActiveRecord::Base
   belongs_to :resident
+  belongs_to :assessor
   validates_presence_of :resident
   validates_presence_of :date
   before_save :calculate_percentiles

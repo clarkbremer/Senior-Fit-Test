@@ -1,4 +1,6 @@
-class Resident < Person
+class Resident < ActiveRecord::Base
+  has_one :user, dependent: :destroy
+  accepts_nested_attributes_for :user
   has_many :assessments, dependent: :destroy
   belongs_to :community
   has_one :assessor, dependent: :destroy  # only if they are an assessor
@@ -33,6 +35,24 @@ class Resident < Person
 
   def is_assessor?
     assessor.present?
+  end
+
+  def is_admin?
+    self.admin
+  end
+
+  def assessor_for_resident?(other_resident)
+    return true if is_admin?
+    return false unless is_assessor?
+    assessor = self.assessor
+    assessor.communities.include? other_resident.community
+  end
+
+  def assessor_for_community?(community)
+    return true if is_admin?
+    return false unless is_assessor?
+    assessor = self.assessor
+    assessor.communities.include? community
   end
 
 private

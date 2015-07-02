@@ -1,5 +1,6 @@
 <h1>Edit Resident</h1>
 <%= render partial: "form", locals: {resident: @resident} %>
+<br>
 <%= link_to "Delete this Resident", resident_path(@resident), method: :delete, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
 <% if policy(:resident).make_assessor? %>
   <% unless @resident.is_assessor? %>

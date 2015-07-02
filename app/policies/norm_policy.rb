@@ -7,23 +7,23 @@ class NormPolicy
   end
 
   def index?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
   def show?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
   def edit?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
   def update?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
   def destroy?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
 end

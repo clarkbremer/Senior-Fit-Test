@@ -35,6 +35,7 @@ class AssessmentsController < ApplicationController
   def create
     @resident = Resident.find(params[:resident_id])
     @assessment = @resident.assessments.build(secure_params)
+    @assessment.assessor = current_user.resident.assessor
     if @assessment.save
       redirect_to resident_path(@resident), :notice => "Assessment Added."
     else

@@ -22,6 +22,15 @@
   </div>
 </div>
 
+<% if @resident.is_assessor? %>
+  <H4><%= @resident.name %> is an assessor for the following communities:</H4>
+  <% @resident.assessor.communities.each do |community| %>
+    <li>
+      <%= link_to community.name, community_path(community) %>
+    </li>
+  <% end %>
+<% end %>
+
 <hr>
 <div class=col-md-9>
   <%= render 'assessments_chart' if @resident.has_assessments? %>
@@ -38,7 +47,9 @@
     <% else %>
       <%= link_to "Add resident login", new_resident_login_path(@resident), class: "btn btn-primary" %>
     <% end %>
-    <%= link_to "Delete this Resident", resident_path(@resident), method: :delete, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
+    <% if policy(@resident).destroy? %>
+      <%= link_to "Delete this Resident", resident_path(@resident), method: :delete, data: { confirm: "Are You Sure?" }, class: "btn btn-warning" %>
+    <% end %>
     <hr>
   <% end %>
   <% if @resident.has_assessments? %>

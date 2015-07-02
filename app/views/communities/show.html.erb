@@ -1,34 +1,39 @@
-<h1><%= @community.name %></h1>
-<h2><%= @community.city %>, <%= @community.state %></h2>
-<hr>
-<H2>Residents:</H2>
-<table id='resident-table' class='cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @residents.each do |resident| %>
+<div class=col-md-8 >
+  <h1><%= @community.name %></h1>
+  <h2><%= @community.city %>, <%= @community.state %></h2>
+  <hr>
+  <H2>Residents:</H2>
+  <table id='resident-table' class='cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
+    <thead>
       <tr>
-        <td><%= resident.first_name %></td>
-        <td><%= resident.last_name %></td>
-        <td><%= link_to 'Show', resident_path(resident),  class: "btn btn-success" %></td>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Assesssor?</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to "Add a Resdient", new_community_resident_path(@community), class: "btn btn-success"  %>
-<hr>
-<H2>Assessors:</H2>
-<% @community.assessors.each do |assessor| %>
-  <li>
-    <%= link_to assessor.name, assessor_path(assessor) %>
-  </li>
-<% end %>
-<hr>
+    </thead>
+    <tbody>
+      <% @residents.each do |resident| %>
+        <tr>
+          <td><%= resident.first_name %></td>
+          <td><%= resident.last_name %></td>
+          <td class="center-text">
+            <% if resident.is_assessor? %>
+              <span class="glyphicon glyphicon-ok"></span>
+            <% end %>
+          </td>
+          <td><%= link_to "Show", resident_path(resident), class: "btn btn-primary btn-xs" %>
+              <%= link_to "Edit", edit_resident_path(resident), class: "btn btn-primary btn-xs" %>
+            <% if policy(resident).destroy? %>
+              <%= link_to "Delete", resident_path(resident), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning btn-xs" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to "Add a Resdient", new_community_resident_path(@community), class: "btn btn-success"  %>
+</div>
 
 <script type="text/javascript">
 $(document).ready(function(){

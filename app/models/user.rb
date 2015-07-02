@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  belongs_to :person, polymorphic: true
+  belongs_to :resident
+  # validates_presence_of :resident
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -9,27 +10,8 @@ class User < ActiveRecord::Base
   attr_accessor :password_confirmation
   validates_confirmation_of :password
 
-  def admin?
-    self.person_type == "Admin"
-  end
-
-  def assessor?
-    self.person_type == "Assessor" || self.person_type == "Admin"
-  end
-
-  def resident?
-    self.person_type == "Resident" || self.person_type == "Assessor" || self.person_type == "Admin"
-  end
-
-  def assessor_for_resident?(resident)
-    return false unless assessor?
-    assessor = self.person
-    assessor.communities.include? resident.community
-  end
-
-  def assessor_for_community?(community)
-    return false unless assessor?
-    assessor = self.person
-    assessor.communities.include? community
-  end
+  delegate :is_admin?, to: :resident
+  delegate :is_assessor?, to: :resident
+  delegate :assessor_for_resident?, to: :resident
+  delegate :assessor_for_community?, to: :resident
 end

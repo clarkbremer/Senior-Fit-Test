@@ -1,14 +1,11 @@
 <% if user_signed_in? %>
-  <% case current_user.person_type %>
-  <% when "Resident" %>
-    <h3>Welcome, Resident</h3>
-  <% when "Assessor" %>
+  <% if current_user.is_assessor? %>
     <h3>Welcome, Assessor</h3>
-  <% when "Admin" %>
+  <% elsif current_user.is_admin? %>
     <h3>Welcome, Administrator</h3>
+  <% else %>
+    <h3>Welcome</h3>
   <% end %>
-<% else %>
-  <h3>Welcome</h3>
 <% end %>
 <% @users.each do |user| %>
   <p>name: <%= user.person.name %></p>

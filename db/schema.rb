@@ -11,14 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630023900) do
+ActiveRecord::Schema.define(version: 20150702160705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "admins", force: :cascade do |t|
-    t.integer "resident_id"
-  end
 
   create_table "assessments", force: :cascade do |t|
     t.integer "resident_id"
@@ -35,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150630023900) do
     t.integer "sit_and_reach_percentile"
     t.integer "back_scratch_percentile"
     t.integer "eight_foot_up_and_go_percentile"
+    t.integer "assessor_id"
   end
 
   add_index "assessments", ["resident_id"], name: "index_assessments_on_resident_id", using: :btree
@@ -77,6 +74,7 @@ ActiveRecord::Schema.define(version: 20150630023900) do
     t.string  "state"
     t.string  "zip"
     t.string  "phone"
+    t.boolean "admin",        default: false
   end
 
   add_index "residents", ["community_id"], name: "index_residents_on_community_id", using: :btree
@@ -94,12 +92,10 @@ ActiveRecord::Schema.define(version: 20150630023900) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "person_id"
-    t.string   "person_type"
+    t.integer  "resident_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["person_type", "person_id"], name: "index_users_on_person_type_and_person_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -57,8 +57,6 @@ class ResidentsController < ApplicationController
     @resident = Resident.find(params[:resident_id])
     if @resident.user
       @assessor = Assessor.new(resident: @resident)
-      @resident.user.person = @assessor
-      @resident.user.save
       if @assessor.save
         redirect_to edit_assessor_path(@assessor), notice: "Resident is now an Assessor"
       else

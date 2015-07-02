@@ -3,7 +3,7 @@
 <table class='dtable cell-border table table-striped table-bordered' cellspacing='0' width='100%'>
   <thead>
   <tr>
-    <th>Community</th><th>First Name</th><th>Last Name</th><th>Assessor</th><th>Actions</th>
+    <th>Community</th><th>First Name</th><th>Last Name</th><th>Assessor?</th><th>Actions</th>
   </tr>
   </thead>
   <tbody>
@@ -19,7 +19,7 @@
       </td>
       <td><%= link_to "Show", resident_path(resident), class: "btn btn-primary btn-xs" %>
           <%= link_to "Edit", edit_resident_path(resident), class: "btn btn-primary btn-xs" %>
-        <% if policy(:resident).destroy? %>
+        <% if policy(resident).destroy? %>
           <%= link_to "Delete", resident_path(resident), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-warning btn-xs" %>
         <% end %>
       </td>

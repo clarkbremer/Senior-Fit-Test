@@ -7,17 +7,17 @@ class ResidentPolicy
   end
 
   def index?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
   def show?
-    @current_user.admin? or
+    @current_user.is_admin? or
     @current_user == @resident.user or
     @current_user.assessor_for_resident?(@resident)
   end
 
   def update?
-    @current_user.admin? or @current_user.assessor_for_resident?(@resident)
+    @current_user.is_admin? or @current_user.assessor_for_resident?(@resident)
   end
 
   def edit?
@@ -29,11 +29,11 @@ class ResidentPolicy
   end
 
   def destroy?
-    update?
+    update? && @resident.user && @resident.user != @current_user && @resident.is_admin? == false
   end
 
   def make_assessor?
-    @current_user.admin?
+    @current_user.is_admin?
   end
 
   class Scope
@@ -45,11 +45,10 @@ class ResidentPolicy
     end
 
     def resolve
-      if user.admin?
+      if user.is_admin?
         scope.all
-      elsif user.assessor?
-        assessor = user.person
-        puts "Assessor #{assessor.name} belongs to these communities: #{assessor.communities.to_s}"
+      elsif user.is_assessor?
+        assessor = user.asessor
         scope.where(community: assessor.communities)
       end
     end
