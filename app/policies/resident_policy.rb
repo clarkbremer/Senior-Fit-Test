@@ -29,7 +29,11 @@ class ResidentPolicy
   end
 
   def destroy?
-    update? && @resident.user && @resident.user != @current_user && @resident.is_admin? == false
+    return false if @resident.user && @resident.user == @current_user
+    return false if @resident.is_admin?
+    return true if @current_user.is_admin?
+    return true if @current_user.assessor_for_resident?(@resident)
+    return false
   end
 
   def make_assessor?

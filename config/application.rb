@@ -23,5 +23,6 @@ module Sft
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
+    config.web_console.whitelisted_ips = '10.0.2.2'
   end
 end

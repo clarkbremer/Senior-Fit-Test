@@ -2,7 +2,7 @@ namespace :db do
   desc "Fill database with demo data"
   task :demo_data => :environment do
     if Rails.env.production?
-      raise "\nI'm sorry, Dave, I can't do that.\n(You're asking me to drop your production database.)"
+    #  raise "\nI'm sorry, Dave, I can't do that.\n(You're asking me to drop your production database.)"
     end
 
 #    ActiveRecord::Base.logger = Logger.new(STDOUT) if defined?(ActiveRecord::Base)

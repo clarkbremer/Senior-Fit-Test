@@ -28,7 +28,7 @@ class AssessorPolicy
   end
 
   def destroy?
-    @current_user.is_admin? && assessor.resident.is_admin? == false
+    @current_user.is_admin? && @assessor.resident.is_admin? == false
   end
 
   class Scope
