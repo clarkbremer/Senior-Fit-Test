@@ -58,7 +58,7 @@ class Resident < ActiveRecord::Base
 private
   def age_range
     if self.age < 65 || self.age > 94
-      errors.add(:birthday, "Must be between 65 and 94 years of age.")
+#      errors.add(:birthday, "Must be between 65 and 94 years of age.")
     end
   end
 end

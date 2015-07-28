@@ -18,3 +18,4 @@
 
 # ingnore the vagrant box
 .vagrant
+.env

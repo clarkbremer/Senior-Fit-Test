@@ -1,3 +1,11 @@
+community = Community.create!(name: "Vital Aging Network", city: "Minneapolis", state: "MN")
+resident = Resident.create!(community: community, first_name: "Clark", last_name: "Bremer", birthdate: "1963/11/15", gender: "male", admin: true,
+  user_attributes: {email: Rails.application.secrets.admin_email,
+                    password: Rails.application.secrets.admin_password,
+                    password_confirmation: Rails.application.secrets.admin_password})
+assessor = Assessor.create!(resident: resident)
+puts 'CREATED ADMIN USER: ' << resident.user.email
+
 Norm.create!([
 {test: "arm_curl", gender: "male", min_age: 65, max_age: 69, scores: [27.0, 25.0, 24.0, 23.0, 21.0, 21.0, 20.0, 20.0, 19.0, 18.0, 18.0, 17.0, 16.0, 16.0, 15.0, 14.0, 13.0, 12.0, 10.0]},
 {test: "arm_curl", gender: "male", min_age: 70, max_age: 74, scores: [26.0, 24.0, 23.0, 22.0, 21.0, 20.0, 19.0, 19.0, 18.0, 17.0, 17.0, 16.0, 15.0, 15.0, 14.0, 13.0, 12.0, 11.0, 9.0]},
