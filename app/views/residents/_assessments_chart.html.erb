@@ -6,16 +6,15 @@
 $(document).ready(function(){
   console.log("ready")
 
-  var chart_json = <%= raw @chart_data %>
-  console.log("Chart JSON:")
-  console.log(chart_json)
+  var chart_data = <%= raw @chart_data.to_json %>
+  console.log("Chart data:")
+  console.log(chart_data)
 
   var chart = c3.generate({
     bindto: "#assessments_chart",
     data: {
-      json: chart_json,
-      type: 'bar',
-      x: 'tests'
+      columns: chart_data['columns'],
+      type: 'bar'
     },
     bar: {
       width: {
@@ -29,7 +28,18 @@ $(document).ready(function(){
     },
     axis: {
       x: {
-        type: 'category'
+        type: 'category',
+        categories: chart_data['tests']
+      },
+      y: {
+        label: 'percentile score'
+      }
+    },
+    tooltip: {
+      format: {
+        value: function (value, ratio, id, index) {
+          return chart_data['raw'][id][index];
+        }
       }
     }
   });

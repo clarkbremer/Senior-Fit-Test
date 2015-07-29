@@ -17,11 +17,19 @@ class Resident < ActiveRecord::Base
 
   def assessment_chart_data
     data = {}
+    data["columns"] = []
+    data["raw"] = {}
     assessments.each do |assessment|
-      data[assessment.date.to_s] = assessment.percentiles
+      c = [assessment.date.to_s].concat assessment.percentiles
+      data["columns"] << c
+      raw_scores = []
+      [:chair_stand, :arm_curl, :two_minute_step, :sit_and_reach, :back_scratch, :eight_foot_up_and_go].each do |test|
+        raw_scores << assessment.send(test)
+      end
+      data["raw"][assessment.date.to_s] = raw_scores
     end
     data["tests"] = ['Chair stand', 'Arm curl', 'Two minute step', 'Sit and reach', 'Back scratch', 'Eight foot up and go']
-    data.to_json
+    return data
   end
 
   def has_assessments?
