@@ -9,7 +9,7 @@ class Resident < ActiveRecord::Base
   validates_presence_of :birthdate
   validates_presence_of :gender
   validates :gender, :inclusion => %w(male female)
-  validate :age_range
+  #validate :age_range
 
   def name
     "#{first_name} #{last_name}"
@@ -31,6 +31,13 @@ class Resident < ActiveRecord::Base
   def age
     now = Time.now.utc.to_date
     now.year - birthdate.year - ((now.month > birthdate.month || (now.month == birthdate.month && now.day >= birthdate.day)) ? 0 : 1)
+  end
+
+  def age_for_norms
+    actual_age = age
+    return 94 if actual_age > 94
+    return 65 if actual_age < 65
+    return actual_age
   end
 
   def is_assessor?
@@ -58,7 +65,7 @@ class Resident < ActiveRecord::Base
 private
   def age_range
     if self.age < 65 || self.age > 94
-#      errors.add(:birthday, "Must be between 65 and 94 years of age.")
+      errors.add(:birthday, "Must be between 65 and 94 years of age.")
     end
   end
 end

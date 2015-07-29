@@ -19,8 +19,9 @@ class Assessment < ActiveRecord::Base
   private
 
   def calculate_percentiles
+    age = resident.age_for_norms
     [ :arm_curl, :back_scratch, :chair_stand, :eight_foot_up_and_go, :sit_and_reach, :two_minute_step].each do |test|
-      norm =  Norm.where(test: test, gender: resident.gender).where("max_age >= ?", resident.age).where("min_age <= ?", resident.age).first
+      norm =  Norm.where(test: test, gender: resident.gender).where("max_age >= ?", age).where("min_age <= ?", age).first
       raw = self.send(test)
       self.send("#{test}_percentile=", norm.percentile(raw))
     end
