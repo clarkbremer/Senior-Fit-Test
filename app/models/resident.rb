@@ -28,7 +28,7 @@ class Resident < ActiveRecord::Base
       end
       data["raw"][assessment.date.to_s] = raw_scores
     end
-    data["tests"] = ['Chair stand', 'Arm curl', 'Two minute step', 'Sit and reach', 'Back scratch', 'Eight foot up and go']
+    data["tests"] = ['Chair Stand', 'Arm Curl', 'Two-Minute Step', 'Sit & Reach', 'Back Scratch', '8-foot Up & Go']
     return data
   end
 
