@@ -9,6 +9,6 @@
 <p>Eight foot up and go: <%= @assessment.eight_foot_up_and_go %></p>
 <hr>
 <h3>Assesement performed by <%= link_to @assessment.assessor.name, assessor_path(@assessment.assessor) %></h3>
-<% if policy(:resident).edit? %>
+<% if policy(@assessment.resident).edit? %>
   <%= link_to "Edit Assessment", edit_assessment_path(@assessment), class: "btn btn-primary" %>
 <% end %>
