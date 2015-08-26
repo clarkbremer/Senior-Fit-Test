@@ -4,11 +4,8 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-  console.log("ready")
 
   var chart_data = <%= raw @chart_data.to_json %>
-  console.log("Chart data:")
-  console.log(chart_data)
 
   var chart = c3.generate({
     bindto: "#assessments_chart",
