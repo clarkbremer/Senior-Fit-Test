@@ -23,6 +23,12 @@ FactoryGirl.define do
 
   factory :assessor do
     association :resident, factory: :resident_with_user, first_name: "Adam", last_name: "Assessor"
+    factory :assessor_with_community do
+      after(:create) do |new_assessor|
+        community = FactoryGirl.create(:community, name: "Shangri La")
+        community.assessors << new_assessor
+      end
+    end
   end
 
 end

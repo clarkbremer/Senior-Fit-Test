@@ -1,7 +1,12 @@
 <H1>Welcome, <%= @assessor.first_name %></H1>
-<H3>You are an assessor for these communities:</H3>
-<% @assessor.communities.each do |community| %>
-  <li>
-    <%= link_to community.name, community_path(community) %>
-  </li>
+<% if @assessor.communities.count > 0 %>
+  <H3>You are an assessor for these communities:</H3>
+  <% @assessor.communities.each do |community| %>
+    <li>
+      <%= link_to community.name, community_path(community) %>
+    </li>
+  <% end %>
+<% else %>
+  <H3>You are an assessor, but you have no communities.</H3>
 <% end %>
+<%= link_to "View my resident profile.", resident_path(@assessor.resident) %>

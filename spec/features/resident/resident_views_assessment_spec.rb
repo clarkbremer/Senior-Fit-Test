@@ -23,4 +23,19 @@ feature "Resident views assessment" do
     expect(page).to have_content "Assessment Date: #{Date.today.to_s}"
   end
 
+  it "has all the assessment scores" do
+    visit assessment_path @assessment
+    expect(page).to have_content "Chair stand"
+    expect(page).to have_content "Arm curl"
+    expect(page).to have_content "Two minute step"
+    expect(page).to have_content "Sit and reach"
+    expect(page).to have_content "Back scratch"
+    expect(page).to have_content "Eight foot up and go"
+  end
+
+  it "has the correct assessor" do
+    visit assessment_path @assessment
+    expect(page).to have_content "Assessment performed by #{@assessment.assessor.resident.first_name} #{@assessment.assessor.resident.last_name}"
+  end
+
 end

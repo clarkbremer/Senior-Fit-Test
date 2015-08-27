@@ -8,7 +8,11 @@
 <p>Back scratch: <%= @assessment.back_scratch %></p>
 <p>Eight foot up and go: <%= @assessment.eight_foot_up_and_go %></p>
 <hr>
-<h3>Assesement performed by <%= link_to @assessment.assessor.name, assessor_path(@assessment.assessor) %></h3>
+<% if policy(@assessment.assessor).edit? %>
+  <h3>Assessment performed by <%= link_to @assessment.assessor.name, assessor_path(@assessment.assessor) %></h3>
+<% else %>
+  <h3>Assessment performed by <%= "#{@assessment.assessor.name}" %></h3>
+<% end %>
 <% if policy(@assessment.resident).edit? %>
   <%= link_to "Edit Assessment", edit_assessment_path(@assessment), class: "btn btn-primary" %>
 <% end %>
