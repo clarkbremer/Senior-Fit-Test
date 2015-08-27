@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Resient signing in" do
+feature "Resident signing in" do
   let(:resident) { FactoryGirl.create(:resident_with_user) }
 
   scenario "Resident logs in with correct credentials" do
