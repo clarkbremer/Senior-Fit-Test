@@ -34,7 +34,10 @@ gem 'pundit'
 gem 'jquery-datatables-rails'
 
 gem 'puma'
-gem 'rails_12factor'
+
+group :production do
+  gem 'rails_12factor'
+end
 
 group :development, :test do
   # See https://github.com/rails/execjs#readme for more supported runtimes

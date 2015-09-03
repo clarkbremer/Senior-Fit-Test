@@ -4,7 +4,6 @@ resident = Resident.create!(community: community, first_name: "Clark", last_name
                     password: Rails.application.secrets.admin_password,
                     password_confirmation: Rails.application.secrets.admin_password})
 assessor = Assessor.create!(resident: resident)
-puts 'CREATED ADMIN USER: ' << resident.user.email
 
 Norm.create!([
 {test: "arm_curl", gender: "male", min_age: 60, max_age: 64, scores: [27.0, 25.0, 24.0, 23.0, 22.0, 21.0, 21.0, 20.0, 20.0, 19.0, 18.0, 18.0, 17.0, 17.0, 16.0, 15.0, 14.0, 13.0, 11.0]},
