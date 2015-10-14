@@ -25,4 +25,13 @@ feature "Assessor views community" do
     expect(page).to have_content "#{@community.state}"
   end
 
+  it "has a resident table" do
+    visit community_path @community
+  end
+
+  it "has a resident in the table" do
+    visit community_path @community
+    expect(page.find('#resident-table:nth-child(0)')).to have_content "#{@resident.name}"
+  end
+
 end

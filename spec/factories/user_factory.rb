@@ -27,6 +27,7 @@ FactoryGirl.define do
       after(:create) do |new_assessor|
         community = FactoryGirl.create(:community, name: "Shangri La")
         community.assessors << new_assessor
+        community.residents << new_assessor.resident
       end
     end
   end
