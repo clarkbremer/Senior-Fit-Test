@@ -15,9 +15,9 @@ class ResidentsController < ApplicationController
   def edit
     @resident = Resident.find(params[:id])
     authorize @resident
-    if @resident.user.blank?
-      @resident.build_user
-    end
+#    if @resident.user.blank?
+#      @resident.build_user
+#    end
   end
 
   def update
@@ -60,10 +60,10 @@ class ResidentsController < ApplicationController
       if @assessor.save
         redirect_to edit_assessor_path(@assessor), notice: "Resident is now an Assessor"
       else
-        redirect_to resident_path(@resident), notice: "Was unable to create an Assessor"
+        redirect_to resident_path(@resident), alert: "Was unable to create an Assessor"
       end
     else
-      render :edit, notice: "Resident must have login before becoming an Assessor"
+      redirect_to resident_path(@resident), alert: "Resident must have login before becoming an Assessor"
     end
   end
 
